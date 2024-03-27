@@ -10,41 +10,47 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { BoardsService } from './boards.service';
-import { Board, BoardStatus } from './board.model';
+import { BoardStatus } from './board.status-enum';
 import { createBoardDto } from './dto/create-board-dto';
 import { BoardStatusValidationPipe } from './pipes/board-status-validation-pipe';
+import { Board } from './board.entity';
 
 @Controller('boards')
 export class BoardsController {
   constructor(private boardService: BoardsService) {}
 
-  @Get('/')
-  getAllBoard() {
-    return this.boardService.getAllBoards();
-  }
-
-  @Post()
-  @UsePipes(ValidationPipe)
-  createBoard(@Body() createBoardDto: createBoardDto): Board {
-    const { title, description } = createBoardDto;
-    return this.boardService.createBoard(createBoardDto);
-  }
+  // @Get('/')
+  // getAllBoard() {
+  //   return this.boardService.getAllBoards();
+  // }
 
   @Get('/:id')
-  getBoardById(@Param('id') id: string): Board {
+  getBoardById(@Param('id') id: number): Promise<Board> {
     return this.boardService.getBoardById(id);
   }
 
-  @Delete('/:id')
-  deleteBoard(@Param('id') id: string): void {
-    this.boardService.deleteBoard(id);
-  }
+  // @Post()
+  // @UsePipes(ValidationPipe)
+  // createBoard(@Body() createBoardDto: createBoardDto): Board {
+  //   const { title, description } = createBoardDto;
+  //   return this.boardService.createBoard(createBoardDto);
+  // }
 
-  @Patch('/:id/status')
-  updateBoardStatus(
-    @Param('id') id: string,
-    @Body('status', BoardStatusValidationPipe) status: BoardStatus,
-  ) {
-    return this.boardService.updateBoardStatus(id, status);
-  }
+  // @Get('/:id')
+  // getBoardById(@Param('id') id: string): Board {
+  //   return this.boardService.getBoardById(id);
+  // }
+
+  // @Delete('/:id')
+  // deleteBoard(@Param('id') id: string): void {
+  //   this.boardService.deleteBoard(id);
+  // }
+
+  // @Patch('/:id/status')
+  // updateBoardStatus(
+  //   @Param('id') id: string,
+  //   @Body('status', BoardStatusValidationPipe) status: BoardStatus,
+  // ) {
+  //   return this.boardService.updateBoardStatus(id, status);
+  // }
 }
