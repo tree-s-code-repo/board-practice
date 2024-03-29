@@ -9,6 +9,6 @@ Technology Stack : Next.js , Postgres, PgAdmin
 - Launch Docker. 
 - Build CI/CD.
 
-## Personal goals
+## Personal Goals
 - To have fun working on projects after work to find personal development fun. 
 - To document my troubleshooting process and learnings to grow technically.
