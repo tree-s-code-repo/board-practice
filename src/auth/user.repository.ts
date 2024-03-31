@@ -2,7 +2,7 @@ import { Repository, DataSource } from 'typeorm';
 import { ConflictException, Injectable } from '@nestjs/common';
 import { User } from './user.entity';
 import { AuthCredentialDto } from './dto/auth-credential.dto';
-import { hash, compare, genSalt } from 'bcrypt';
+import { hash, genSalt } from 'bcrypt';
 
 @Injectable()
 export class UserRepository extends Repository<User> {
