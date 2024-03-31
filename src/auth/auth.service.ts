@@ -26,6 +26,6 @@ export class AuthService {
       return 'login sucess';
     }
 
-    return 'a';
+    throw new Error('login failed');
   }
 }
