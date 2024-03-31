@@ -2,6 +2,7 @@ import { Repository, DataSource } from 'typeorm';
 import { BoardStatus } from './board.model';
 import { Board } from './board.entity';
 import { Injectable } from '@nestjs/common';
+import { CreateBoardDto } from './dto/create-board-dto';
 
 @Injectable()
 export class BoardRepository extends Repository<Board> {
@@ -9,7 +10,7 @@ export class BoardRepository extends Repository<Board> {
     super(Board, dataSource.createEntityManager());
   }
 
-  async createBoard(createBoardDto): Promise<Board> {
+  async createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
     const { title, description } = createBoardDto;
 
     const board = this.create({
