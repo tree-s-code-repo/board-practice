@@ -10,6 +10,10 @@ export class AuthService {
     private userRepository: UserRepository,
   ) {}
 
+  async getAll() {
+    return this.userRepository.find();
+  }
+
   async signUp(authCredentialDto: AuthCredentialDto) {
     return this.userRepository.createUser(authCredentialDto);
   }
