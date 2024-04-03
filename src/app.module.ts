@@ -3,7 +3,10 @@ import { BoardsModule } from './boards/boards.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
+import { JwtStrategy } from './auth/jwt.stratgy';
+import { PassportModule } from '@nestjs/passport';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -27,5 +30,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     BoardsModule,
     AuthModule,
   ],
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy], //여기서 사용하기 위해
+  exports: [JwtStrategy, PassportModule], //다른 모듈에서 사용하기 위해
 })
 export class AppModule {}
